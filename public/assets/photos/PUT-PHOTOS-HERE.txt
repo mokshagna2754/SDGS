@@ -1,0 +1,10 @@
+Drop the college photos in this folder (any names, JPG or PNG).
+Claude will sort them into the right places on the site.
+
+Most useful:
+- Campus / main building (3 for the opening collage)
+- Classrooms, library, labs, auditorium, sports ground
+- Solar panels, rain water harvesting, water purifiers
+- NCC, NSS, sports and cultural events
+- Founder, principal, management members, faculty (portraits)
+- Graduation / events for the gallery

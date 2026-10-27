@@ -1,0 +1,11 @@
+# S.D.G.S College, Hindupur
+
+> Saradamba Dasa Govindiah Setty College (S.D.G.S College) is a college in Hindupur, Sri Sathya Sai District, Andhra Pradesh, India, established in 1965. Recognised by UGC, affiliated to Sri Krishnadevaraya University (Anantapur), accredited by NAAC with B+ grade and approved by AICTE.
+
+## Key pages
+- [Home](/): overview, accreditation, courses, FAQ
+- [About](/about): founder, vision and mission, history since 1965, management, principal
+- [Academics](/academics): Intermediate groups (MPC, BiPC, MBiPC, CEC, MEC, HEC), UG programmes (B.Sc Honours, B.Com, B.A Honours, BCA Honours, BBA), admissions, eligibility, documents, examinations
+- [Departments](/departments): Botany, Zoology, Mathematics, Computer Science, Commerce, Computer Applications, Business Administration, Economics, Political Science
+- [NAAC](/naac): B+ accreditation, IQAC, SSR, seven criteria
+- [Contact](/contact): +91 63017 76991, sdgsdegreecollege1965@gmail.com

@@ -1,0 +1,3 @@
+Save the official logos here with exactly these names (PNG, transparent background if possible):
+ugc.png   sku.png   naac.png   aicte.png
+They replace the drawn emblems automatically.
