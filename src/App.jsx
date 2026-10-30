@@ -6,6 +6,7 @@ import Departments from "./pages/Departments.jsx";
 import Department from "./pages/Department.jsx";
 import Academics from "./pages/Academics.jsx";
 import Students from "./pages/Students.jsx";
+import StudentActivity from "./pages/StudentActivity.jsx";
 import Infrastructure from "./pages/Infrastructure.jsx";
 import Alumni from "./pages/Alumni.jsx";
 import GalleryPage from "./pages/GalleryPage.jsx";
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="departments/:id" element={<Department />} />
         <Route path="academics" element={<Academics />} />
         <Route path="students" element={<Students />} />
+        <Route path="students/:id" element={<StudentActivity />} />
         <Route path="infrastructure" element={<Infrastructure />} />
         <Route path="alumni" element={<Alumni />} />
         <Route path="gallery" element={<GalleryPage />} />

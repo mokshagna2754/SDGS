@@ -194,13 +194,14 @@ export default function Home() {
           </div>
           <div className="stack">
             {[
-              { n: "01", h: "NCC", p: "Discipline, drill and leadership. Our NCC unit shapes confident cadets ready to serve the nation.", img: "sports", to: "/students#ncc" },
-              { n: "02", h: "NSS", p: "Not me, but you. NSS volunteers lead community service, awareness drives and special camps.", img: "friends", to: "/students#nss" },
-              { n: "03", h: "Sports & Culture", p: "Athletics, team sports and cultural fests that let every talent find its stage.", img: "crowd", to: "/students#sports" }
+              { n: "01", h: "NCC", p: "Discipline, drill and leadership. Our NCC unit shapes confident cadets ready to serve the nation.", img: "students", to: "/students/ncc" },
+              { n: "02", h: "NSS", p: "Not me, but you. NSS volunteers lead community service, awareness drives and special camps.", img: "friends", to: "/students/nss" },
+              { n: "03", h: "Sports", p: "Athletics and team sports, from the annual sports meet to university-level tournaments.", img: "sports", to: "/students/sports" },
+              { n: "04", h: "Culturals", p: "Annual day, music, dance, drama and literary events where every talent finds a stage.", img: "crowd", to: "/students/culturals" }
             ].map((c, k) => (
               <article className="stack-card" key={c.n} style={{ "--i": k }}>
                 <div className="sc-body">
-                  <span className="sc-n">{c.n} / 03</span>
+                  <span className="sc-n">{c.n} / 04</span>
                   <h3>{c.h}</h3>
                   <p className="muted">{c.p}</p>
                   <Link className="link-arrow" to={c.to}>Explore {c.h}<Icon name="arrowUR" /></Link>

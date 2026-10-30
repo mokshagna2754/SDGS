@@ -14,7 +14,7 @@ export const NAV = [
   { t: "About SDGS", h: "/about", c: [["Our Founder", "/about#founder"], ["Vision & Mission", "/about#vision"], ["History of SDGS", "/about#history"], ["Management", "/about#management"], ["Principal", "/about#principal"]] },
   { t: "Departments", h: "/departments", mega: true, c: deptLinks.concat([["All Departments", "/departments"]]) },
   { t: "Academics", h: "/academics", c: [["Programmes", "/academics#programmes"], ["Admissions", "/academics#admissions"], ["Examinations", "/academics#examinations"], ["Academic Calendar", "/academics#calendar"]] },
-  { t: "Students Corner", h: "/students", c: [["NCC", "/students#ncc"], ["NSS", "/students#nss"], ["Sports & Cultural", "/students#sports"]] },
+  { t: "Students Corner", h: "/students", c: [["NCC", "/students/ncc"], ["NSS", "/students/nss"], ["Sports", "/students/sports"], ["Culturals", "/students/culturals"]] },
   { t: "Infrastructure", h: "/infrastructure", c: [["Library", "/infrastructure#library"], ["Sports", "/infrastructure#sports"], ["Auditorium", "/infrastructure#auditorium"], ["Rain Water Harvesting", "/infrastructure#rainwater"], ["Solar System", "/infrastructure#solar"], ["Water Purifiers", "/infrastructure#water"], ["Campus Buildings", "/infrastructure#buildings"], ["Labs", "/infrastructure#labs"]] },
   { t: "Alumni", h: "/alumni" },
   { t: "Gallery", h: "/gallery" },

@@ -1,52 +1,107 @@
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
-import { Img, PageHero, Pending, Split, SubNav } from "../components/ui.jsx";
+import { Img, PageHero, Split } from "../components/ui.jsx";
 
-const BLOCKS = [
+export const ACTIVITIES = [
   {
-    id: "ncc", eyebrow: "National Cadet Corps", h: <>NCC: <em>Unity</em> and discipline.</>, img: "sports",
+    id: "ncc",
+    nav: "NCC",
+    chip: "Cadet corps",
+    eyebrow: "National Cadet Corps",
+    h: <>NCC: <em>Unity</em> and discipline.</>,
+    img: "students",
+    sub: <>Cadets trained for <em>service.</em></>,
     lead: "The NCC unit at S.D.G.S College Hindupur trains cadets in drill, leadership, adventure and national service, guided by the college's Care Taker Officer (CTO).",
+    blurb: "Discipline, drill and leadership. The NCC unit shapes confident cadets ready to serve the nation.",
     points: ["Drill, parade and weapon training as per NCC syllabus", "Annual training camps and national integration camps", "B and C certificate examinations", "Republic Day and Independence Day parades"],
-    person: ["Care Taker Officer (CTO)", "NCC Unit, S.D.G.S College"], icon: "flag"
+    person: ["Care Taker Officer (CTO)", "NCC Unit, S.D.G.S College"],
+    icon: "flag"
   },
   {
-    id: "nss", eyebrow: "National Service Scheme", h: <>NSS: <em>Not me,</em> but you.</>, img: "friends",
+    id: "nss",
+    nav: "NSS",
+    chip: "Service",
+    eyebrow: "National Service Scheme",
+    h: <>NSS: <em>Not me,</em> but you.</>,
+    img: "friends",
+    sub: <>Service that starts <em>here.</em></>,
     lead: "NSS volunteers at S.D.G.S College Hindupur lead community service, health and awareness drives, blood donation, tree plantation and special camps in nearby villages.",
+    blurb: "Not me, but you. NSS volunteers lead community service, awareness drives and special camps.",
     points: ["Regular community service activities", "Seven-day special camps in adopted villages", "Blood donation, health and literacy drives", "Swachh Bharat and environmental campaigns"],
-    person: ["NSS Programme Officer", "NSS Unit, S.D.G.S College"], icon: "heart"
+    person: ["NSS Programme Officer", "NSS Unit, S.D.G.S College"],
+    icon: "heart"
   },
   {
-    id: "sports", eyebrow: "Sports & cultural activities", h: <>Where every <em>talent</em> finds a stage.</>, img: "crowd",
-    lead: "Sports and cultural activities at S.D.G.S College are led by the Physical Education Teacher (PET) and cultural committee, with inter-collegiate tournaments, annual sports meet and cultural fests.",
-    points: ["Athletics, kabaddi, kho-kho, volleyball, cricket and more", "Inter-collegiate and university-level tournaments", "Annual day, cultural fest and talent shows", "Music, dance, drama and literary competitions"],
-    person: ["Physical Education Teacher (PET)", "Department of Physical Education"], icon: "trophy"
+    id: "sports",
+    nav: "Sports",
+    chip: "Games",
+    eyebrow: "Sports",
+    h: <>Sports: play with <em>purpose.</em></>,
+    img: "sports",
+    sub: <>On the <em>field.</em></>,
+    lead: "Sports at S.D.G.S College are led by the Physical Education Teacher (PET), with athletics, team games, the annual sports meet and inter-collegiate tournaments.",
+    blurb: "Athletics and team sports, from the annual sports meet to university-level tournaments.",
+    points: ["Athletics, kabaddi, kho-kho, volleyball, cricket and more", "Inter-collegiate and university-level tournaments", "Annual sports meet", "Coaching and fitness with the Physical Education Teacher"],
+    person: ["Physical Education Teacher (PET)", "Department of Physical Education"],
+    icon: "trophy"
+  },
+  {
+    id: "culturals",
+    nav: "Culturals",
+    chip: "Stage",
+    eyebrow: "Cultural activities",
+    h: <>Where every <em>talent</em> finds a stage.</>,
+    img: "crowd",
+    sub: <>On the <em>stage.</em></>,
+    lead: "Cultural life at S.D.G.S College is led by the cultural committee, with the annual day, cultural fests and competitions in music, dance, drama and literature.",
+    blurb: "Annual day, music, dance, drama and literary events where every talent finds a stage.",
+    points: ["Annual day, cultural fest and talent shows", "Music, dance, drama and literary competitions", "Stage programmes for college events", "A platform for every student to perform"],
+    person: ["Cultural Committee", "S.D.G.S College"],
+    icon: "music"
   }
 ];
 
+const LEGACY = { ncc: "/students/ncc", nss: "/students/nss", sports: "/students/sports", culturals: "/students/culturals", cultural: "/students/culturals" };
+
+export function ActivityCard({ a }) {
+  return (
+    <Link className="dept-card" to={"/students/" + a.id}>
+      <Img k={a.img} w={800} alt={a.eyebrow + " at S.D.G.S College Hindupur"} />
+      <span className="chip stream">{a.chip}</span>
+      <span className="go"><Icon name="arrowUR" /></span>
+      <h3>{a.nav}</h3>
+      <p>{a.blurb}</p>
+    </Link>
+  );
+}
+
 export default function Students() {
+  const { hash } = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const id = hash.replace("#", "");
+    if (LEGACY[id]) navigate(LEGACY[id], { replace: true });
+  }, [hash, navigate]);
+
   return (
     <>
       <PageHero title={<>Students <em>corner.</em></>} img="crowd" crumbs={[{ t: "Students Corner" }]}
-        lead="Life at S.D.G.S College goes far beyond lectures. NCC, NSS, sports and cultural activities build discipline, service and confidence in every student." />
-      <SubNav items={[["ncc", "NCC"], ["nss", "NSS"], ["sports", "Sports & Cultural"]]} />
-      {BLOCKS.map((b, i) => (
-        <section className={"section" + (i % 2 ? " ivory" : "")} id={b.id} key={b.id}>
-          <div className={"frame split-2" + (i % 2 ? " rev" : "")}>
-            <div className="prose">
-              <span className="eyebrow" data-reveal>{b.eyebrow}</span>
-              <Split style={{ margin: "14px 0 20px" }}>{b.h}</Split>
-              <p className="lead" data-reveal>{b.lead}</p>
-              <ul className="check-list" data-stagger="0.07" style={{ margin: "22px 0 26px" }}>{b.points.map((p) => <li key={p}><Icon name="checkCircle" />{p}</li>)}</ul>
-              <div className="doc" data-reveal style={{ maxWidth: 440 }}>
-                <i><Icon name={b.icon} /></i><div><b>{b.person[0]}</b><span>{b.person[1]} · name and photo to be added</span></div>
-              </div>
-            </div>
+        lead="Life at S.D.G.S College goes far beyond lectures. NCC, NSS, sports and cultural activities each have their own page, and each builds discipline, service and confidence." />
+      <section className="section">
+        <div className="frame">
+          <div className="sec-head">
             <div>
-              <div className="media img-reveal"><Img k={b.img} w={1100} alt={b.eyebrow + " at S.D.G.S College Hindupur"} /></div>
-              <div style={{ marginTop: 14 }} data-reveal><Pending>Event photos to be provided</Pending></div>
+              <span className="eyebrow" data-reveal>Student life</span>
+              <Split>Four ways to <em>take part.</em></Split>
             </div>
+            <p className="lead" data-reveal>Open NCC, NSS, Sports or Culturals for activities, the faculty in charge, and space for event photos.</p>
           </div>
-        </section>
-      ))}
+          <div className="cards-4" data-stagger="0.07">
+            {ACTIVITIES.map((a) => <ActivityCard a={a} key={a.id} />)}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -441,6 +441,7 @@ p { margin: 0 0 1em; }
 .stack-card:nth-child(3) { background: var(--maroon-d); color: #f1e9e1; border-color: var(--maroon-d); }
 .stack-card:nth-child(3) .muted { color: rgba(241,233,225,.75); }
 .stack-card:nth-child(3) .link-arrow { color: var(--gold-2); }
+.stack-card:nth-child(4) { background: #fff; }
 
 /* ---------- Principal / quote ---------- */
 .quote-wrap { display: grid; grid-template-columns: 20rem 1fr; gap: clamp(1.875rem, 6vw, 5rem); align-items: center; }

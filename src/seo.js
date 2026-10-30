@@ -74,9 +74,33 @@ const ROUTES = {
     crumb: "Academics"
   },
   "/students": {
-    title: "Students Corner: NCC, NSS, Sports & Cultural | S.D.G.S College Hindupur",
-    description: "Student life at S.D.G.S College Hindupur: NCC, NSS volunteering, sports and cultural activities that build character, leadership and service.",
+    title: "Students Corner | NCC, NSS, Sports & Culturals | S.D.G.S College Hindupur",
+    description: "Student life at S.D.G.S College Hindupur. Open a page for NCC, NSS, sports or cultural activities that build character, leadership and service.",
     crumb: "Students Corner"
+  },
+  "/students/ncc": {
+    title: "NCC | National Cadet Corps | S.D.G.S College Hindupur",
+    description: "The NCC unit at S.D.G.S College Hindupur trains cadets in drill, leadership, camps and national service, guided by the Care Taker Officer.",
+    crumb: "NCC",
+    parent: { name: "Students Corner", path: "/students" }
+  },
+  "/students/nss": {
+    title: "NSS | National Service Scheme | S.D.G.S College Hindupur",
+    description: "NSS at S.D.G.S College Hindupur: community service, health drives, blood donation, tree plantation and special camps in nearby villages.",
+    crumb: "NSS",
+    parent: { name: "Students Corner", path: "/students" }
+  },
+  "/students/sports": {
+    title: "Sports | S.D.G.S College Hindupur",
+    description: "Sports at S.D.G.S College Hindupur: athletics, kabaddi, kho-kho, volleyball, cricket, the annual sports meet and inter-collegiate tournaments.",
+    crumb: "Sports",
+    parent: { name: "Students Corner", path: "/students" }
+  },
+  "/students/culturals": {
+    title: "Culturals | S.D.G.S College Hindupur",
+    description: "Cultural activities at S.D.G.S College Hindupur: annual day, cultural fest, music, dance, drama and literary competitions.",
+    crumb: "Culturals",
+    parent: { name: "Students Corner", path: "/students" }
   },
   "/infrastructure": {
     title: "Campus & Infrastructure | S.D.G.S College Hindupur",
@@ -169,6 +193,7 @@ export function getSeo(pathname) {
   if (meta.crumb) {
     const items = [{ name: "Home", item: abs("/") }];
     if (dept) items.push({ name: "Departments", item: abs("/departments") });
+    if (meta.parent) items.push({ name: meta.parent.name, item: abs(meta.parent.path) });
     items.push({ name: meta.crumb, item: canonical });
     graph.push({ "@type": "BreadcrumbList", itemListElement: items.map((x, i) => ({ "@type": "ListItem", position: i + 1, name: x.name, item: x.item })) });
   }
