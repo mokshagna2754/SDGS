@@ -7,16 +7,17 @@ import { Img, LeadForm, Split, useSite } from "./ui.jsx";
 import { reduceMotion } from "../lib/effects.js";
 
 /* =========================================================
-   Hero slider: 5 slides, first is a 3-photo collage.
+   Hero slider: 6 slides, first is a 3-photo collage.
    Circular clip-path wipes from the click origin, Ken Burns,
    masked headline rise, progress bars, swipe + keyboard.
    ========================================================= */
 const SLIDES = [
-  { label: "Legacy", collage: ["campus", "graduation", "students"], eyebrow: "Since 1965 · Hindupur", title: <>Sixty years of <em>shaping</em> futures.</>, text: "Saradamba Dasa Govindiah Setty College: where heritage meets ambition, and every student is known by name." },
-  { label: "Academics", img: "lecture", eyebrow: "Intermediate · Undergraduate", title: <>Learn from <em>mentors</em>, not just lecturers.</>, text: "Six Intermediate groups and five UG programmes, taught by faculty who care about outcomes." },
-  { label: "Campus", img: "library", eyebrow: "Library · Labs · Auditorium", title: <>A campus built for <em>curiosity</em>.</>, text: "Well-stocked library, modern laboratories, a green solar-powered campus and spaces to grow." },
-  { label: "Life", img: "crowd", eyebrow: "NCC · NSS · Sports · Culture", title: <>Find your <em>stage</em>. Own it.</>, text: "From parade grounds to cultural fests, student life at S.D.G.S builds character and confidence." },
-  { label: "Admissions", img: "friends", eyebrow: "Admission enquiries open", title: <>Your <em>legacy</em> begins here.</>, text: "Talk to our admissions desk today and find the programme that fits your goals." }
+  { label: "Legacy", collage: ["realCampus", "realNccSalute", "realWomensTeam"], pos: ["50% 60%", "50% 22%", "50% 35%"], eyebrow: "Since 1965 · Hindupur", title: <>Sixty years of <em>shaping</em> futures.</>, text: "Saradamba Dasa Govindiah Setty College: where heritage meets ambition, and every student is known by name." },
+  { label: "Academics", img: "realChemLab", pos: "60% 55%", eyebrow: "Intermediate · Undergraduate", title: <>Learn from <em>mentors</em>, not just lecturers.</>, text: "Six Intermediate groups and five UG programmes, taught by faculty who care about outcomes." },
+  { label: "Campus", img: "realLibrary", pos: "60% 50%", eyebrow: "Library · Labs · Auditorium", title: <>A campus built for <em>curiosity</em>.</>, text: "Well-stocked library, modern laboratories, a green solar-powered campus and spaces to grow." },
+  { label: "Life", img: "realNccParade", pos: "50% 35%", eyebrow: "NCC · NSS · Sports · Culture", title: <>Find your <em>stage</em>. Own it.</>, text: "From parade grounds to cultural fests, student life at S.D.G.S builds character and confidence." },
+  { label: "Sports", img: "realCricket", pos: "50% 55%", eyebrow: "Cricket · Basketball · Athletics", title: <>Grounds that build <em>champions</em>.</>, text: "Cricket nets, courts and open grounds where S.D.G.S teams train for university tournaments." },
+  { label: "Admissions", img: "realAthletics", pos: "50% 40%", eyebrow: "Admission enquiries open", title: <>Your <em>legacy</em> begins here.</>, text: "Talk to our admissions desk today and find the programme that fits your goals." }
 ];
 
 export function HeroSlider() {
@@ -87,9 +88,9 @@ export function HeroSlider() {
             <div className="slide-media">
               {s.collage ? (
                 <div className="collage">
-                  {s.collage.map((k, t) => <div className="tile" key={k}><Img k={k} w={t === 0 ? 1400 : 900} eager={n === 0} alt={t === 0 ? "S.D.G.S College campus, Hindupur" : ""} /></div>)}
+                  {s.collage.map((k, t) => <div className="tile" key={k}><Img k={k} w={t === 0 ? 1400 : 900} eager={n === 0} alt={t === 0 ? "S.D.G.S College campus, Hindupur" : ""} style={{ objectPosition: s.pos[t] }} /></div>)}
                 </div>
-              ) : <Img k={s.img} w={2000} alt="" />}
+              ) : <Img k={s.img} w={2000} alt="" style={{ objectPosition: s.pos }} />}
             </div>
             <div className="slide-copy" style={drift ? { transform: `translateY(${drift * 0.18}px)`, opacity: 1 - drift / 900 } : undefined}>
               <span className="eyebrow">{s.eyebrow}</span>

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
+import AboutStory from "./pages/AboutStory.jsx";
 import Departments from "./pages/Departments.jsx";
 import Department from "./pages/Department.jsx";
 import Academics from "./pages/Academics.jsx";
@@ -20,6 +21,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route path="about/our-story" element={<AboutStory />} />
         <Route path="departments" element={<Departments />} />
         <Route path="departments/:id" element={<Department />} />
         <Route path="academics" element={<Academics />} />

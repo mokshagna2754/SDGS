@@ -16,7 +16,7 @@ Deploy the `dist/` folder to any static host (Netlify, Vercel, Cloudflare Pages,
 ## Before going live
 
 1. **Domain**: set `siteUrl` in `src/data.js`. Canonical URLs, Open Graph, JSON-LD and `sitemap.xml` are generated from it. It is currently a placeholder.
-2. **Photos**: all images are Unsplash placeholders, mapped in one place (`img` in `src/data.js`). Put the college photos in `public/assets/photos/` and change each entry to e.g. `"/assets/photos/campus.jpg"`.
+2. **Photos**: the website serves 45 WebP files from `public/assets/photos/refined/`. Image mappings live in `src/data.js`. Original photos, editing masters, and processing records are saved in `output/image-source-backup.zip`.
 3. **Accreditation logos**: drop official files as `public/assets/accreditation/ugc.png`, `sku.png`, `naac.png`, `aicte.png`. They replace the drawn emblems automatically.
 4. **Enquiry leads**: by default, form submissions open WhatsApp with the details pre-filled to the college number. To also store every lead (Google Sheet, CRM), set `leadEndpoint` in `src/data.js` to a URL that accepts a JSON POST (e.g. a Google Apps Script web app).
 5. **Social links**: Twitter/X, LinkedIn and WhatsApp channel are empty in `src/data.js` and shown as "coming soon".

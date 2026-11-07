@@ -75,7 +75,7 @@ export default function Home() {
             </div>
             <div className="intro-visual" data-reveal="scale">
               <div className="ph-a img-reveal"><Img k="campus" w={1000} alt="S.D.G.S College campus building in Hindupur" /></div>
-              <div className="ph-b img-reveal" style={{ transitionDelay: ".25s" }}><Img k="classroom" w={700} alt="Students in a classroom at S.D.G.S College" /></div>
+              <div className="ph-b img-reveal" style={{ transitionDelay: ".25s" }}><Img k="realComputerLab" w={700} alt="Computer lab at S.D.G.S College" /></div>
               <div className="seal-badge" aria-hidden="true">
                 <svg viewBox="0 0 116 116"><defs><path id="sb" d="M58,58 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
                   <text fill="#e9c978" fontFamily="Archivo Narrow" fontSize="9" fontWeight="800" letterSpacing="2.6"><textPath href="#sb">• A LEGACY OF EXCELLENCE • SINCE 1965 </textPath></text></svg>
@@ -104,9 +104,9 @@ export default function Home() {
           </div>
           <div className="path-grid" data-stagger="0.12">
             {[
-              { n: "01", img: "lecture", h: "Academics", p: "Intermediate and UG programmes with experienced faculty, honours tracks and practical learning.", to: "/academics#programmes", chips: ["MPC", "BiPC", "B.Sc", "B.Com", "BCA", "BBA"] },
-              { n: "02", img: "notebook", h: "Examinations", p: "Academic calendar, exam schedules and results, all in one place.", to: "/academics#examinations", chips: ["Calendar", "Schedules", "Results"] },
-              { n: "03", img: "graduation", h: "Admissions", p: "Eligibility, documents and a simple process to secure your seat.", to: "/academics#admissions", chips: ["Eligibility", "Documents", "Apply"] }
+              { n: "01", img: "realSeminarHall", h: "Academics", p: "Intermediate and UG programmes with experienced faculty, honours tracks and practical learning.", to: "/academics#programmes", chips: ["MPC", "BiPC", "B.Sc", "B.Com", "BCA", "BBA"] },
+              { n: "02", img: "realComputerLab", h: "Examinations", p: "Academic calendar, exam schedules and results, all in one place.", to: "/academics#examinations", chips: ["Calendar", "Schedules", "Results"] },
+              { n: "03", img: "realCampus", h: "Admissions", p: "Eligibility, documents and a simple process to secure your seat.", to: "/academics#admissions", chips: ["Eligibility", "Documents", "Apply"] }
             ].map((c) => (
               <Link className="path" to={c.to} key={c.n}>
                 <Img k={c.img} w={1000} alt="" />
@@ -194,8 +194,8 @@ export default function Home() {
           </div>
           <div className="stack">
             {[
-              { n: "01", h: "NCC", p: "Discipline, drill and leadership. Our NCC unit shapes confident cadets ready to serve the nation.", img: "students", to: "/students/ncc" },
-              { n: "02", h: "NSS", p: "Not me, but you. NSS volunteers lead community service, awareness drives and special camps.", img: "friends", to: "/students/nss" },
+              { n: "01", h: "NCC", p: "Discipline, drill and leadership. Our NCC unit shapes confident cadets ready to serve the nation.", img: "realNccParade", to: "/students/ncc" },
+              { n: "02", h: "NSS", p: "Not me, but you. NSS volunteers lead community service, awareness drives and special camps.", img: "realNss", to: "/students/nss" },
               { n: "03", h: "Sports", p: "Athletics and team sports, from the annual sports meet to university-level tournaments.", img: "sports", to: "/students/sports" },
               { n: "04", h: "Culturals", p: "Annual day, music, dance, drama and literary events where every talent finds a stage.", img: "crowd", to: "/students/culturals" }
             ].map((c, k) => (

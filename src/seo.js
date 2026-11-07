@@ -8,7 +8,7 @@ import SDGS from "./data.js";
 const BRAND = "S.D.G.S College Hindupur";
 export const abs = (path = "/") => SDGS.siteUrl.replace(/\/$/, "") + path;
 const LOGO = abs("/assets/logo.png");
-const OG = abs("/assets/og-image.jpg");
+const OG = abs("/assets/photos/refined/campus-building.webp");
 
 export const FAQ_HOME = [
   {
@@ -62,6 +62,12 @@ const ROUTES = {
     title: "About S.D.G.S College Hindupur | Founder, Vision, History & Principal",
     description: "Discover the 60-year legacy of Saradamba Dasa Govindiah Setty College, Hindupur: our founder, vision and mission, history since 1965, management and principal's message.",
     crumb: "About SDGS"
+  },
+  "/about/our-story": {
+    title: "Our Story | Founder, History, Management & Principal | S.D.G.S College Hindupur",
+    description: "The full story of S.D.G.S Degree College, Hindupur since 1965: why students choose SDGS, vision and mission, founder Sri Dasa N. Govindaiah Setty, history, management and Principal Dr. B. Polaiah.",
+    crumb: "Our Story",
+    parent: { name: "About SDGS", path: "/about" }
   },
   "/departments": {
     title: "Departments | S.D.G.S College Hindupur",

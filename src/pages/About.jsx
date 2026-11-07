@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
-import { Img, PageHero, Pending, Split, SubNav } from "../components/ui.jsx";
+import { Img, PageHero, Split, SubNav } from "../components/ui.jsx";
 
 const TIMELINE = [
   { y: "1965", h: "The foundation", p: "S.D.G.S College is established in Hindupur with a mission to bring quality higher education to the region." },
@@ -11,7 +11,17 @@ const TIMELINE = [
   { y: "2025", h: "Diamond jubilee", p: "Sixty years of excellence, celebrated with a refreshed identity and a promise for the next sixty." }
 ];
 
-const MGMT = ["President", "Secretary", "Correspondent", "Treasurer", "Member", "Member", "Member", "Member"];
+const MGMT = [
+  ["Revur Chandra Mohan", "President", "mgmt-chandra-mohan"],
+  ["Bysani Ram Prasad", "Secretary & Correspondent", "mgmt-ram-prasad"],
+  ["Dasa V. Suresh", "Vice President", "mgmt-suresh"],
+  ["Dasa Gangadhar", "Joint Secretary", "mgmt-gangadhar"],
+  ["K. S. Nanda Kishore", "Treasurer", "mgmt-nanda-kishore"]
+];
+
+const ReadMore = ({ to }) => (
+  <div className="read-more" data-reveal><Link className="btn btn-ghost" to={"/about/our-story#" + to}>Read more<Icon name="arrow" /></Link></div>
+);
 
 export default function About() {
   return (
@@ -24,15 +34,15 @@ export default function About() {
       <section className="section" id="founder" aria-labelledby="founder-h">
         <div className="frame quote-wrap">
           <div className="portrait" data-reveal="scale">
-            <img className="ph" src="/assets/logo-sm.png" alt="" />
-            <div className="cap"><b>Our Founder</b>Photograph to be added</div>
+            <Img k="founder" className="photo" alt="Late Sri Dasa N. Govindaiah Setty, Founder President" />
+            <div className="cap"><b>Sri Dasa N. Govindaiah Setty</b>Founder President</div>
           </div>
           <div className="prose">
             <span className="eyebrow" data-reveal>Our founder</span>
             <Split id="founder-h" style={{ margin: "16px 0 22px" }}>A vision that <em>outlived</em> its time.</Split>
             <p className="lead" data-reveal>The college carries the name of Saradamba Dasa Govindiah Setty, honouring a commitment to make higher education accessible to the young people of Hindupur and its surrounding villages.</p>
-            <p data-reveal>The founder's life story, photographs and contribution to the region will be presented here.</p>
-            <div data-reveal><Pending>Founder biography and photo to be provided</Pending></div>
+            <p data-reveal>Late Sri Dasa N. Govindaiah Setty believed education was the key to the progress of society. In 1965 he established the first degree college in Hindupur, donating generously so thousands of students could access quality higher education.</p>
+            <ReadMore to="founder-story" />
           </div>
         </div>
       </section>
@@ -55,6 +65,7 @@ export default function About() {
             </article>
           </div>
           <p className="muted" style={{ marginTop: 14, fontSize: ".85rem" }}>Draft wording, to be confirmed by the college.</p>
+          <ReadMore to="vision-mission" />
         </div>
       </section>
 
@@ -64,6 +75,7 @@ export default function About() {
             <span className="eyebrow" data-reveal>History of S.D.G.S</span>
             <Split id="hist-h" style={{ marginTop: 14 }}>Sixty years, <em>one promise.</em></Split>
             <p className="lead" data-reveal style={{ marginTop: 18 }}>S.D.G.S College was founded in Hindupur in 1965. Over six decades it has grown into a NAAC B+ accredited institution offering Intermediate and honours degree programmes.</p>
+            <ReadMore to="our-history" />
             <div className="media img-reveal" style={{ marginTop: 30, aspectRatio: "16/10" }}><Img k="graduation" w={1100} alt="Graduates celebrating at S.D.G.S College" /></div>
           </div>
           <div className="timeline">
@@ -85,13 +97,13 @@ export default function About() {
               <span className="eyebrow" data-reveal>Management</span>
               <Split id="mg-h">The people <em>behind</em> the legacy.</Split>
             </div>
-            <div data-reveal><Pending>Member names and photos to be provided</Pending></div>
+            <ReadMore to="management-team" />
           </div>
-          <div className="people" data-stagger="0.06">
-            {MGMT.map((r, i) => (
-              <article className="person" key={i}>
-                <div className="ph"><span className="mono">{r[0]}</span></div>
-                <div className="meta"><b>Name to be updated</b><span>{r}</span></div>
+          <div className="people people-5" data-stagger="0.06">
+            {MGMT.map(([name, role, photo]) => (
+              <article className="person" key={name}>
+                <div className="ph"><Img k={"/assets/photos/refined/" + photo + ".webp"} alt={name + ", " + role} /></div>
+                <div className="meta"><b>{name}</b><span>{role}</span></div>
               </article>
             ))}
           </div>
@@ -102,15 +114,18 @@ export default function About() {
         <div className="frame quote-wrap">
           <div className="portrait" data-reveal="scale">
             <img className="ph" src="/assets/logo-sm.png" alt="" />
-            <div className="cap"><b>The Principal</b>S.D.G.S College, Hindupur</div>
+            <div className="cap"><b>Dr. B. Polaiah</b>Principal, S.D.G.S College</div>
           </div>
           <div className="prose">
             <span className="eyebrow" data-reveal>Principal's message</span>
             <Split id="pr-h" style={{ margin: "16px 0 22px" }}>Welcome to the <em>S.D.G.S</em> family.</Split>
             <blockquote data-reveal style={{ fontSize: "clamp(1.4rem,2.4vw,2rem)", marginBottom: 24 }}>Education here is not only about marks. It is about character, curiosity and the courage to serve.</blockquote>
             <p data-reveal>For sixty years, S.D.G.S College has believed in the potential of every student who walks through its gates. Our faculty mentor, our programmes challenge, and our campus life shapes confident young citizens. Whether you join us for Intermediate or a degree, you become part of a proud legacy.</p>
-            <div data-reveal><Pending>Principal's name, photo and full message to be provided</Pending></div>
-            <div style={{ marginTop: 28 }} data-reveal><Link className="btn" to="/academics#admissions">Explore admissions<Icon name="arrow" /></Link></div>
+            <p data-reveal>Dr. B. Polaiah, M.Sc., Ph.D., leads the college with 28 years of institutional experience, including 27 years as a Professor of Chemistry and 13 published research papers.</p>
+            <div style={{ marginTop: 28, display: "flex", gap: 12, flexWrap: "wrap" }} data-reveal>
+              <Link className="btn" to="/about/our-story#principal-profile">Read more<Icon name="arrow" /></Link>
+              <Link className="btn btn-ghost" to="/academics#admissions">Explore admissions</Link>
+            </div>
           </div>
         </div>
       </section>

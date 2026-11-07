@@ -4,7 +4,7 @@ import { Gallery } from "../components/Showcase.jsx";
 export default function GalleryPage() {
   return (
     <>
-      <PageHero title={<>Life at <em>S.D.G.S</em> in frames.</>} img="friends" crumbs={[{ t: "Gallery" }]}
+      <PageHero title={<>Life at <em>S.D.G.S</em> in frames.</>} img="realCollegeDay" crumbs={[{ t: "Gallery" }]}
         lead="Photos of campus, classrooms, laboratories, events and sports at S.D.G.S College Hindupur." />
       <section className="section">
         <div className="frame">

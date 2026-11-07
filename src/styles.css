@@ -615,6 +615,17 @@ blockquote { margin: 0; font-family: var(--serif); font-style: italic; font-size
 .person .meta { padding: 0.75rem 0 0; }
 .person b { display: block; font-family: var(--serif); font-size: 1.05rem; }
 .person span { font-size: .88rem; color: var(--muted); }
+.person b small { font-family: var(--sans, inherit); font-size: .78rem; color: var(--muted); font-weight: 400; }
+.people-5 { grid-template-columns: repeat(5, 1fr); }
+.people-5 .person { text-align: center; }
+.people-5 .person .ph { width: min(100%, 9.5rem); aspect-ratio: 1; margin: 0 auto; border-radius: 50%; border: 3px solid #fff; outline: 1px solid var(--line-2); box-shadow: 0 0.75rem 1.5rem -1rem rgba(60,20,20,.45); }
+.people-5 .person .meta { padding-top: 1rem; }
+.stats.stats-3 { grid-template-columns: repeat(3, 1fr); }
+.moments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.moments figure { margin: 0; }
+.moments img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
+.moments figcaption { padding-top: 0.625rem; font-size: .9rem; color: var(--muted); }
+.read-more { margin-top: 1.5rem; }
 
 .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
@@ -726,6 +737,8 @@ tbody tr:hover { background: rgba(180,138,58,.06); }
   .accr-grid .accr:nth-child(3) { border-left: 0; }
   .accr-grid .accr:nth-child(n+3) { border-top: 1px solid var(--line); }
   .cards-4, .people, .steps { grid-template-columns: repeat(2, 1fr); }
+  .people-5 { grid-template-columns: repeat(3, 1fr); }
+  .moments { grid-template-columns: 1fr 1fr; }
   .step:nth-child(3) { border-left: 0; padding-left: 0; }
   .bento { grid-template-columns: repeat(2, 1fr); }
   .f-top { grid-template-columns: 1fr 1fr; }
@@ -791,6 +804,9 @@ tbody tr:hover { background: rgba(180,138,58,.06); }
   .course { flex-basis: 82vw; }
   .tabs button { padding: 0.6875rem 0.875rem; font-size: .84rem; }
   .people { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .moments { grid-template-columns: 1fr; }
+  .stats.stats-3 { grid-template-columns: repeat(3, 1fr); }
+  .stats.stats-3 .stat + .stat { padding-left: 0.75rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }

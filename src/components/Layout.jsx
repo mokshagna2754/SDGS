@@ -11,7 +11,7 @@ const C = SDGS.contact;
 const deptLinks = SDGS.departments.map((d) => [d.name, "/departments/" + d.id]);
 export const NAV = [
   { t: "Home", h: "/" },
-  { t: "About SDGS", h: "/about", c: [["Our Founder", "/about#founder"], ["Vision & Mission", "/about#vision"], ["History of SDGS", "/about#history"], ["Management", "/about#management"], ["Principal", "/about#principal"]] },
+  { t: "About SDGS", h: "/about", c: [["Our Founder", "/about#founder"], ["Vision & Mission", "/about#vision"], ["History of SDGS", "/about#history"], ["Management", "/about#management"], ["Principal", "/about#principal"], ["Our Story", "/about/our-story"]] },
   { t: "Departments", h: "/departments", mega: true, c: deptLinks.concat([["All Departments", "/departments"]]) },
   { t: "Academics", h: "/academics", c: [["Programmes", "/academics#programmes"], ["Admissions", "/academics#admissions"], ["Examinations", "/academics#examinations"], ["Academic Calendar", "/academics#calendar"]] },
   { t: "Students Corner", h: "/students", c: [["NCC", "/students/ncc"], ["NSS", "/students/nss"], ["Sports", "/students/sports"], ["Culturals", "/students/culturals"]] },
@@ -326,8 +326,17 @@ export default function Layout() {
   const onPageReady = useCallback(() => {
     const hash = window.location.hash;
     if (hash) {
-      const t = document.getElementById(hash.slice(1));
-      if (t) setTimeout(() => scrollTo(t), first.current ? 400 : 60);
+      // the incoming page may mount a moment after the exit animation, so wait for the target
+      const isFirst = first.current;
+      let tries = 0;
+      const seek = () => {
+        const t = document.getElementById(hash.slice(1));
+        if (!t) { if (++tries < 30) setTimeout(seek, 50); return; }
+        scrollTo(t, !isFirst);
+        // correct once images and reveals settle
+        if (!isFirst) [500, 1100].forEach((ms) => setTimeout(() => { lenis.current && lenis.current.resize(); scrollTo(t, true); }, ms));
+      };
+      setTimeout(seek, isFirst ? 400 : 60);
     } else if (!first.current) scrollTo(0, true);
     first.current = false;
   }, [scrollTo]);

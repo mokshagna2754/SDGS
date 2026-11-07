@@ -2,3 +2,4 @@ node_modules/
 dist/
 dist-ssr/
 .claude/
+/output/image-source-backup.zip
