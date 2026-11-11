@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SDGS from "../data.js";
 import Icon from "../components/Icon.jsx";
 import { Faq, PageHero, Pending, Split, SubNav, useSite } from "../components/ui.jsx";
@@ -14,6 +15,19 @@ const DOCS = [
   "Recent passport-size photographs"
 ];
 
+export function ProgCard({ p, level }) {
+  return (
+    <Link className="course" to={"/academics/" + p.id}>
+      <span className="lvl">{level}</span>
+      <div className="code">{p.code}</div>
+      <h3>{p.name}</h3>
+      <p>{p.note}</p>
+      <div className="subs">{p.subs.map((s) => <span key={s}>{s}</span>)}</div>
+      <div className="foot"><span>View programme<Icon name="arrowUR" /></span></div>
+    </Link>
+  );
+}
+
 export default function Academics() {
   const { openEnquiry } = useSite();
   const P = SDGS.programmes;
@@ -21,53 +35,32 @@ export default function Academics() {
     <>
       <PageHero title={<>Academics & <em>admissions.</em></>} img="lecture" crumbs={[{ t: "Academics" }]}
         lead="S.D.G.S College Hindupur offers six Intermediate groups and five undergraduate programmes. Find eligibility, documents required, the academic calendar and examination details below." />
-      <SubNav items={[["programmes", "Programmes"], ["admissions", "Admissions"], ["examinations", "Examinations"], ["calendar", "Academic Calendar"], ["faq", "FAQ"]]} />
+      <SubNav items={[["programmes", "Programmes Offered"], ["admissions", "Admissions"], ["examinations", "Examinations"], ["calendar", "Academic Calendar"], ["syllabus", "Syllabus"], ["faq", "FAQ"]]} />
 
-      <section className="section" id="programmes" aria-labelledby="prog-h">
+      <section className="section dark on-dark" id="programmes" aria-labelledby="prog-h">
         <div className="frame">
           <div className="sec-head">
             <div>
-              <span className="eyebrow" data-reveal>Programmes</span>
-              <Split id="prog-h">What can I study at <em>S.D.G.S College?</em></Split>
-              <p className="lead" data-reveal>S.D.G.S College Hindupur offers Intermediate groups MPC, BiPC, MBiPC, CEC, MEC and HEC, and UG programmes B.Sc. (Honours), B.Com, B.A. (Honours), B.C.A. (Honours) and B.B.A., affiliated to Sri Krishnadevaraya University.</p>
+              <span className="eyebrow" data-reveal>Academics</span>
+              <Split id="prog-h">Programmes <em>offered.</em></Split>
             </div>
           </div>
 
-          <h3 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontSize: "2rem", margin: "10px 0 18px" }} data-reveal>Intermediate section</h3>
-          <div className="table-wrap" data-reveal>
-            <table>
-              <caption className="sr">Intermediate groups at S.D.G.S College</caption>
-              <thead><tr><th>Group</th><th>Subjects</th><th>Leads to</th><th></th></tr></thead>
-              <tbody>
-                {P.intermediate.map((p) => (
-                  <tr key={p.code}>
-                    <td><b style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", fontWeight: 400, color: "var(--maroon)" }}>{p.code}</b></td>
-                    <td>{p.name}</td>
-                    <td className="muted">{p.note}</td>
-                    <td><button className="link-arrow" onClick={() => openEnquiry("Intermediate · " + p.code)}>Enquire<Icon name="arrowUR" /></button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="prog-label" data-reveal><h3>UG programmes</h3><span className="chip">Undergraduate · Sri Krishnadevaraya University</span></div>
+          <div className="prog-grid ug" data-stagger="0.08">
+            {P.ug.map((p) => <ProgCard p={p} level="Undergraduate" key={p.id} />)}
+            <Link className="course" to="/#finder">
+              <span className="lvl">Guidance</span>
+              <div className="code"><Icon name="compass" /></div>
+              <h3>Not sure which one?</h3>
+              <p>Take the 30-second course finder or talk to a counsellor.</p>
+              <div className="foot"><span>Open course finder<Icon name="arrowUR" /></span></div>
+            </Link>
           </div>
 
-          <h3 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontSize: "2rem", margin: "56px 0 18px" }} data-reveal>UG programmes</h3>
-          <div className="cards-3" data-stagger="0.08">
-            {P.ug.map((p, i) => (
-              <article className="card spot" key={p.code}>
-                <span className="ic" style={{ fontFamily: "var(--serif)", fontSize: "1.4rem" }}>0{i + 1}</span>
-                <h3>{p.name}</h3>
-                <p>{p.note}</p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 16 }}>{p.subs.map((s) => <span className="chip chip-light" key={s}>{s}</span>)}</div>
-                <button className="link-arrow" style={{ marginTop: "auto", paddingTop: 18 }} onClick={() => openEnquiry(p.name)}>Enquire about {p.code}<Icon name="arrowUR" /></button>
-              </article>
-            ))}
-            <article className="card" style={{ background: "var(--wine)", color: "#fff", borderColor: "transparent" }}>
-              <span className="ic" style={{ background: "rgba(233,201,120,.15)", color: "var(--gold-2)" }}><Icon name="compass" /></span>
-              <h3>Not sure which one?</h3>
-              <p style={{ color: "rgba(255,255,255,.7)" }}>Take the 30-second course finder or talk to a counsellor.</p>
-              <a className="link-arrow" href="/#finder" style={{ marginTop: "auto", paddingTop: 18, color: "var(--gold-2)" }}>Open course finder<Icon name="arrowUR" /></a>
-            </article>
+          <div className="prog-label" style={{ marginTop: 64 }} data-reveal><h3>Intermediate programmes</h3><span className="chip">Board of Intermediate Education, A.P.</span></div>
+          <div className="prog-grid inter" data-stagger="0.08">
+            {P.intermediate.map((p) => <ProgCard p={p} level="Intermediate" key={p.id} />)}
           </div>
         </div>
       </section>
@@ -96,7 +89,7 @@ export default function Academics() {
                   <tbody>
                     <tr><td><b>Intermediate</b></td><td>Pass in SSC (Class 10) or equivalent, as per BIEAP norms</td></tr>
                     <tr><td><b>B.Sc. (Honours)</b></td><td>Pass in Intermediate with relevant science subjects</td></tr>
-                    <tr><td><b>B.Com / BBA</b></td><td>Pass in Intermediate (any group)</td></tr>
+                    <tr><td><b>B.Com / BBA (Honours)</b></td><td>Pass in Intermediate (any group)</td></tr>
                     <tr><td><b>B.A. (Honours)</b></td><td>Pass in Intermediate (any group)</td></tr>
                     <tr><td><b>B.C.A. (Honours)</b></td><td>Pass in Intermediate, as per SKU / APSCHE norms</td></tr>
                   </tbody>
@@ -123,11 +116,12 @@ export default function Academics() {
             </div>
           </div>
           <div className="docs" data-stagger="0.06">
-            {[["Examination schedule", "Current semester timetable"], ["Hall ticket instructions", "How to download and verify"], ["Internal assessment plan", "Dates and syllabus coverage"], ["Results", "Links to Board / University results"]].map(([b, s]) => (
-              <a className="doc" href="#examinations" key={b} aria-disabled="true">
-                <i><Icon name="file" /></i><div><b>{b}</b><span>{s} · to be published</span></div><span className="dl"><Icon name="download" /></span>
-              </a>
-            ))}
+            <a className="doc" href="#examinations" aria-disabled="true">
+              <i><Icon name="file" /></i><div><b>Details of examinations</b><span>Semester details · to be published</span></div><span className="dl"><Icon name="download" /></span>
+            </a>
+            <a className="doc" href="#examinations" aria-disabled="true">
+              <i><Icon name="file" /></i><div><b>Results</b><span>Links to Board / University results · to be published</span></div><span className="dl"><Icon name="download" /></span>
+            </a>
           </div>
         </div>
       </section>
@@ -141,6 +135,31 @@ export default function Academics() {
           <div className="cards-4" data-stagger="0.07">
             {[["Term I", "Commencement, orientation and first internal assessment"], ["Term II", "Seminars, projects and second internal assessment"], ["Practicals", "Laboratory and practical examinations"], ["Semester exams", "Board / University examinations and results"]].map(([h, p], i) => (
               <article className="card" key={h}><span className="ic"><Icon name="calendar" /></span><h3>{h}</h3><p>{p}</p><span className="muted" style={{ marginTop: 14, fontSize: ".8rem" }}>Phase 0{i + 1}</span></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-sm" id="syllabus" aria-labelledby="syl-h">
+        <div className="frame">
+          <div className="sec-head">
+            <div><span className="eyebrow" data-reveal>Syllabus</span><Split id="syl-h">Syllabus copies, <em>year wise.</em></Split></div>
+            <div data-reveal><Pending>PDFs to be uploaded by the college</Pending></div>
+          </div>
+          <div className="syllabus" data-stagger="0.07">
+            {SDGS.syllabus.map((c) => (
+              <article className="card" key={c.course}>
+                <h3>{c.course}</h3>
+                <ul>
+                  {c.years.map((y) => (
+                    <li key={y.y}>
+                      <a className="doc" href={y.file || undefined} target={y.file ? "_blank" : undefined} rel="noopener" aria-disabled={!y.file || undefined}>
+                        <i><Icon name="file" /></i><div><b>{y.y} syllabus</b><span>{y.file ? "PDF" : "To be uploaded"}</span></div><span className="dl"><Icon name="download" /></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </div>

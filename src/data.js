@@ -31,9 +31,9 @@ export const SDGS = {
   social: {
     facebook: "https://www.facebook.com/share/1DAtKqbtgx/",
     instagram: "https://www.instagram.com/sdgs_campuslife?igsh=dnZvZHhmZ241am9u",
-    twitter: "",   // to be shared by the college
+    twitter: "https://x.com/SDGScampus",
     linkedin: "",  // to be shared by the college
-    whatsapp: ""   // channel / group link, to be shared by the college
+    whatsapp: "https://wa.me/916301776991"
   },
 
   // Optional: URL that accepts a JSON POST of every enquiry (Google Apps Script,
@@ -45,7 +45,7 @@ export const SDGS = {
     { text: "Admission enquiries open for Intermediate & UG programmes", href: "/academics#admissions", isNew: true },
     { text: "Celebrating 60 years · A Legacy of Excellence since 1965", href: "/about#history" },
     { text: "Accredited by NAAC with B+ Grade", href: "/naac" },
-    { text: "Examination schedule & academic calendar", href: "/academics#examinations" },
+    { text: "Examination details & academic calendar", href: "/academics#examinations" },
     { text: "NSS & NCC enrolments for the new academic year", href: "/students" }
   ],
 
@@ -61,7 +61,11 @@ export const SDGS = {
     realNss: P("nss-swachh-bharat"),
     realYoga: P("yoga-day"),
     realCollegeDay: P("college-day-2022"),
-    realMemorial: P("founder-memorial"),
+    realTemple: P("founder-memorial"),
+    realFelicitation: P("alumni-felicitation"),
+    realAward: "/assets/photos/refined/national-award.png",
+    realGate: P("college-gate"),
+    realGardenMemorial: P("campus-memorial"),
     realWomensTeam: P("womens-team-trophy"),
     realFootball: P("football-team"),
     realAthletics: P("athletics-championship"),
@@ -93,31 +97,44 @@ export const SDGS = {
     emptyClass: P("stock-emptyClass"),
     books: P("stock-books"),
     notebook: P("stock-notebook"),
-    study: P("stock-study")
+    study: P("stock-study"),
+    zoology: "/assets/photos/refined/zoology.jpg"
   },
 
   programmes: {
     intermediate: [
-      { code: "MPC", name: "Mathematics, Physics, Chemistry", subs: ["Mathematics", "Physics", "Chemistry"], note: "Gateway to engineering, physical sciences and B.Sc. Mathematics / Computer Science." },
-      { code: "BiPC", name: "Biology, Physics, Chemistry", subs: ["Botany", "Zoology", "Physics", "Chemistry"], note: "The route to medicine, life sciences and B.Sc. Botany / Zoology." },
-      { code: "MBiPC", name: "Maths, Biology, Physics, Chemistry", subs: ["Mathematics", "Botany", "Zoology", "Physics", "Chemistry"], note: "Keeps both engineering and medical doors open." },
-      { code: "CEC", name: "Civics, Economics, Commerce", subs: ["Civics", "Economics", "Commerce"], note: "Strong foundation for B.Com, BBA, CA and civil services." },
-      { code: "MEC", name: "Mathematics, Economics, Commerce", subs: ["Mathematics", "Economics", "Commerce"], note: "Quantitative commerce for finance, analytics and CA." },
-      { code: "HEC", name: "History, Economics, Civics", subs: ["History", "Economics", "Civics"], note: "Humanities pathway to B.A., law and public services." }
+      { id: "mpc", code: "MPC", name: "Mathematics, Physics, Chemistry", subs: ["Mathematics", "Physics", "Chemistry"], note: "Gateway to engineering, physical sciences and B.Sc. Mathematics / Computer Science." },
+      { id: "bipc", code: "BiPC", name: "Biology, Physics, Chemistry", subs: ["Botany", "Zoology", "Physics", "Chemistry"], note: "The route to medicine, life sciences and B.Sc. Botany / Zoology." },
+      { id: "mbipc", code: "MBiPC", name: "Maths, Biology, Physics, Chemistry", subs: ["Mathematics", "Botany", "Zoology", "Physics", "Chemistry"], note: "Keeps both engineering and medical doors open." },
+      { id: "cec", code: "CEC", name: "Civics, Economics, Commerce", subs: ["Civics", "Economics", "Commerce"], note: "Strong foundation for B.Com, BBA, CA and civil services." },
+      { id: "mec", code: "MEC", name: "Mathematics, Economics, Commerce", subs: ["Mathematics", "Economics", "Commerce"], note: "Quantitative commerce for finance, analytics and CA." },
+      { id: "hec", code: "HEC", name: "History, Economics, Civics", subs: ["History", "Economics", "Civics"], note: "Humanities pathway to B.A., law and public services." }
     ],
+    // depts: department ids that teach the programme (linked from its page)
     ug: [
-      { code: "B.Sc", name: "B.Sc. (Honours)", subs: ["Botany", "Zoology", "Mathematics", "Computer Science"], note: "Four-year honours degree with deep specialisation and lab-intensive learning." },
-      { code: "B.Com", name: "B.Com", subs: ["General", "Computer Applications"], note: "Accounting, taxation and business with an optional computing edge." },
-      { code: "B.A", name: "B.A. (Honours)", subs: ["Economics", "Political Science"], note: "Policy, society and economic thinking for public life and research." },
-      { code: "BCA", name: "B.C.A. (Honours)", subs: ["Programming", "Data", "Web & Cloud"], note: "Industry-ready computing: software, databases, networks and projects." },
-      { code: "BBA", name: "B.B.A. (General)", subs: ["Management", "Marketing", "Finance", "HR"], note: "Management fundamentals for entrepreneurs and future leaders." }
+      { id: "bsc-honours", code: "B.Sc", name: "B.Sc. (Honours)", subs: ["Botany", "Zoology", "Mathematics", "Computer Science"], depts: ["botany", "zoology", "mathematics", "computer-science"], note: "Four-year honours degree with deep specialisation and lab-intensive learning." },
+      { id: "bcom", code: "B.Com", name: "B.Com", subs: ["General", "Computer Applications"], depts: ["commerce"], note: "Accounting, taxation and business with an optional computing edge." },
+      { id: "ba-honours", code: "B.A", name: "B.A. (Honours)", subs: ["Economics", "Political Science"], depts: ["economics", "political-science"], note: "Policy, society and economic thinking for public life and research." },
+      { id: "bca-honours", code: "BCA", name: "B.C.A. (Honours)", subs: ["Programming", "Data", "Web & Cloud"], depts: ["bca"], note: "Industry-ready computing: software, databases, networks and projects." },
+      { id: "bba-honours", code: "BBA", name: "B.B.A. (Honours)", subs: ["Management", "Marketing", "Finance", "HR"], depts: ["bba"], note: "Four-year honours degree in management, marketing, finance and HR for entrepreneurs and future leaders." }
     ]
   },
+
+  // Syllabus copies shown under Academic Calendar, year wise for each course.
+  // Set "file" to the PDF path (e.g. "/docs/syllabus/bsc-honours-1.pdf") once the college shares it.
+  syllabus: [
+    { course: "Intermediate", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }] },
+    { course: "B.Sc. (Honours)", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }, { y: "III Year", file: "" }, { y: "IV Year", file: "" }] },
+    { course: "B.Com", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }, { y: "III Year", file: "" }] },
+    { course: "B.A. (Honours)", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }, { y: "III Year", file: "" }, { y: "IV Year", file: "" }] },
+    { course: "B.C.A. (Honours)", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }, { y: "III Year", file: "" }, { y: "IV Year", file: "" }] },
+    { course: "B.B.A. (Honours)", years: [{ y: "I Year", file: "" }, { y: "II Year", file: "" }, { y: "III Year", file: "" }, { y: "IV Year", file: "" }] }
+  ],
 
   departments: [
     { id: "botany", name: "Botany", stream: "Science", img: "cells", programme: "B.Sc. (Honours) Botany",
       about: "Plant science from cell to ecosystem, with herbarium work, field studies and lab-based plant physiology." },
-    { id: "zoology", name: "Zoology", stream: "Science", img: "lab", programme: "B.Sc. (Honours) Zoology",
+    { id: "zoology", name: "Zoology", stream: "Science", img: "zoology", programme: "B.Sc. (Honours) Zoology",
       about: "Animal diversity, physiology, genetics and ecology taught through lab practice and field visits." },
     { id: "mathematics", name: "Mathematics", stream: "Science", img: "maths", programme: "B.Sc. (Honours) Mathematics",
       about: "Rigorous foundations in algebra, analysis and applied mathematics that power science, finance and technology." },
@@ -127,7 +144,7 @@ export const SDGS = {
       about: "Accounting, taxation, banking and business law combined with digital tools for the modern economy." },
     { id: "bca", name: "Computer Applications", stream: "Computing", img: "laptop", programme: "B.C.A. (Honours)",
       about: "Software development, web technologies and project work that prepares students for the IT industry." },
-    { id: "bba", name: "Business Administration", stream: "Management", img: "students", programme: "B.B.A. (General)",
+    { id: "bba", name: "Business Administration", stream: "Management", img: "students", programme: "B.B.A. (Honours)",
       about: "Management, marketing, finance and human resources with case studies, presentations and industry exposure." },
     { id: "economics", name: "Economics", stream: "Arts", img: "books", programme: "B.A. (Honours) Economics",
       about: "Micro and macro economics, Indian economy and data-driven policy analysis." },
@@ -151,7 +168,11 @@ export const SDGS = {
     { img: "realCricket", cap: "Cricket nets", cat: "sports" },
     { img: "realCourt", cap: "Basketball court", cat: "sports" },
     { img: "realCollegeDay", cap: "College Day 2022", cat: "events" },
-    { img: "realMemorial", cap: "Founder's memorial", cat: "campus" },
+    { img: "realTemple", cap: "Temple on campus", cat: "campus" },
+    { img: "realGate", cap: "College entrance", cat: "campus" },
+    { img: "realGardenMemorial", cap: "Memorial in the campus garden", cat: "campus" },
+    { img: "realFelicitation", cap: "B.Com 1973-76 batch felicitation", cat: "events" },
+    { img: "realAward", cap: "A national honour for the S.D.G.S family", cat: "events" },
     { img: "/assets/photos/refined/event-jagruthi-2013.webp", cap: "Jagruthi 2013 college fest", cat: "events" },
     { img: "/assets/photos/refined/event-ncc-review.webp", cap: "Salute at the NCC parade", cat: "events" },
     { img: "/assets/photos/refined/event-lamp-lighting.webp", cap: "Lamp lighting ceremony", cat: "events" },

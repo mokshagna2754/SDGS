@@ -12,7 +12,7 @@ import { reduceMotion } from "../lib/effects.js";
    masked headline rise, progress bars, swipe + keyboard.
    ========================================================= */
 const SLIDES = [
-  { label: "Legacy", collage: ["realCampus", "realNccSalute", "realWomensTeam"], pos: ["50% 60%", "50% 22%", "50% 35%"], eyebrow: "Since 1965 · Hindupur", title: <>Sixty years of <em>shaping</em> futures.</>, text: "Saradamba Dasa Govindiah Setty College: where heritage meets ambition, and every student is known by name." },
+  { label: "Legacy", collage: ["realCampus", "realGate", "realGardenMemorial"], pos: ["50% 60%", "50% 62%", "50% 45%"], eyebrow: "Since 1965 · Hindupur", title: <>Sixty years of <em>shaping</em> futures.</>, text: "Saradamba Dasa Govindiah Setty College: where heritage meets ambition, and every student is known by name." },
   { label: "Academics", img: "realChemLab", pos: "60% 55%", eyebrow: "Intermediate · Undergraduate", title: <>Learn from <em>mentors</em>, not just lecturers.</>, text: "Six Intermediate groups and five UG programmes, taught by faculty who care about outcomes." },
   { label: "Campus", img: "realLibrary", pos: "60% 50%", eyebrow: "Library · Labs · Auditorium", title: <>A campus built for <em>curiosity</em>.</>, text: "Well-stocked library, modern laboratories, a green solar-powered campus and spaces to grow." },
   { label: "Life", img: "realNccParade", pos: "50% 35%", eyebrow: "NCC · NSS · Sports · Culture", title: <>Find your <em>stage</em>. Own it.</>, text: "From parade grounds to cultural fests, student life at S.D.G.S builds character and confidence." },
@@ -21,7 +21,7 @@ const SLIDES = [
 ];
 
 export function HeroSlider() {
-  const { openEnquiry, loading } = useSite();
+  const { loading } = useSite();
   const [i, setI] = useState(0);
   const [prev, setPrev] = useState(-1);
   const [origin, setOrigin] = useState({ x: 85, y: 55 });
@@ -102,16 +102,6 @@ export function HeroSlider() {
           </div>
         ))}
 
-        <aside className="hero-card">
-          <span className="tag"><i></i>Admissions open</span>
-          <h3>Find your perfect programme</h3>
-          <p>Intermediate & UG seats are filling. Get fees, eligibility and a callback today.</p>
-          <div className="row">
-            <button className="btn btn-gold btn-sm" onClick={() => openEnquiry()}>Enquire now<Icon name="arrow" /></button>
-            <a className="btn btn-ghost btn-sm" href="#finder">Course quiz</a>
-          </div>
-        </aside>
-
         <div className="hero-ui">
           <div className="hero-dots">
             {SLIDES.map((s, n) => (
@@ -156,8 +146,7 @@ export function NoticeBar() {
    Courses rail with animated tab pill (layoutId)
    ========================================================= */
 export function CourseRail() {
-  const { openEnquiry } = useSite();
-  const [kind, setKind] = useState("intermediate");
+  const [kind, setKind] = useState("ug");
   const rail = useRef(null);
   const [pct, setPct] = useState(20);
   const prog = () => { const r = rail.current; const max = r.scrollWidth - r.clientWidth; setPct(max > 0 ? 15 + 85 * r.scrollLeft / max : 100); };
@@ -180,7 +169,7 @@ export function CourseRail() {
       <div className="sec-head" style={{ alignItems: "center" }}>
         <LayoutGroup>
           <div className="tabs" role="tablist" aria-label="Programme level">
-            {[["intermediate", "Intermediate"], ["ug", "UG Programmes"]].map(([k, t]) => (
+            {[["ug", "UG Programmes"], ["intermediate", "Intermediate"]].map(([k, t]) => (
               <button key={k} role="tab" aria-selected={kind === k} className={kind === k ? "on" : ""} onClick={() => setKind(k)}>
                 {kind === k && <motion.span layoutId="tabPill" className="pill" style={{ inset: 0, left: 0, width: "auto" }} transition={{ type: "spring", stiffness: 380, damping: 32 }} />}
                 <span style={{ position: "relative" }}>{t}</span>
@@ -204,8 +193,7 @@ export function CourseRail() {
               <p>{p.note}</p>
               <div className="subs">{p.subs.map((s) => <span key={s}>{s}</span>)}</div>
               <div className="foot">
-                <Link className="link-arrow" to="/academics#programmes" style={{ fontSize: ".85rem" }}>Details<Icon name="arrowUR" /></Link>
-                <button onClick={() => openEnquiry(kind === "ug" ? p.name : "Intermediate · " + p.code)}>Enquire<Icon name="arrowUR" /></button>
+                <Link className="link-arrow" to={"/academics/" + p.id} style={{ fontSize: ".85rem" }}>Details<Icon name="arrowUR" /></Link>
               </div>
             </motion.article>
           ))}
@@ -242,7 +230,7 @@ const REC = {
     biz: ["B.Com General", "or B.Com Computer Applications", "Accounting, taxation and business with an optional computing edge.", ["BBA"]],
     tech: ["B.C.A. (Honours)", "Bachelor of Computer Applications", "Industry-ready computing: programming, databases, web and projects.", ["B.Sc. Computer Science"]],
     soc: ["B.A. (Hons) Political Science", "or B.A. (Hons) Economics", "Policy, governance and economic thinking for public life, law and research.", ["B.A. Economics"]],
-    lead: ["B.B.A. (General)", "Bachelor of Business Administration", "Management, marketing, finance and HR for future entrepreneurs and leaders.", ["B.Com"]]
+    lead: ["B.B.A. (Honours)", "Bachelor of Business Administration", "Management, marketing, finance and HR for future entrepreneurs and leaders.", ["B.Com"]]
   }
 };
 

@@ -5,7 +5,7 @@
 ## Key pages
 - [Home](/): overview, accreditation, courses, FAQ
 - [About](/about): founder, vision and mission, history since 1965, management, principal
-- [Academics](/academics): Intermediate groups (MPC, BiPC, MBiPC, CEC, MEC, HEC), UG programmes (B.Sc Honours, B.Com, B.A Honours, BCA Honours, BBA), admissions, eligibility, documents, examinations
+- [Academics](/academics): Intermediate groups (MPC, BiPC, MBiPC, CEC, MEC, HEC), UG programmes (B.Sc Honours, B.Com, B.A Honours, BCA Honours, BBA Honours), admissions, eligibility, documents, examinations
 - [Departments](/departments): Botany, Zoology, Mathematics, Computer Science, Commerce, Computer Applications, Business Administration, Economics, Political Science
 - [NAAC](/naac): B+ accreditation, IQAC, SSR, seven criteria
 - [Contact](/contact): +91 63017 76991, sdgsdegreecollege1965@gmail.com

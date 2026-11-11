@@ -21,6 +21,25 @@ export default function Alumni() {
         </div>
       </section>
 
+      <section className="section-sm" id="pride">
+        <div className="frame">
+          <div className="sec-head">
+            <div><span className="eyebrow" data-reveal>Alumni pride</span><Split>Moments that make us <em>proud.</em></Split></div>
+            <p className="lead" data-reveal>Our graduates come back to celebrate the college, and carry its name to the highest honours.</p>
+          </div>
+          <div className="moments two" data-stagger="0.1">
+            <figure>
+              <Img k="realFelicitation" w={1100} alt="Felicitation by the B.Com 1973-76 batch at S.D.G.S Group of Institutions, Hindupur" />
+              <figcaption>Felicitation by the B.Com 1973-76 batch, S.D.G.S Group of Institutions</figcaption>
+            </figure>
+            <figure>
+              <Img k="realAward" w={1100} alt="A national honour received by a member of the S.D.G.S family" style={{ objectPosition: "50% 40%" }} />
+              <figcaption>A national honour for the S.D.G.S family</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <section className="section ivory">
         <div className="frame">
           <div className="sec-head">

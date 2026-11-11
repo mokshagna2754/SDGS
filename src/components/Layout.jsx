@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import SDGS from "../data.js";
 import Icon from "./Icon.jsx";
+import Assistant from "./Assistant.jsx";
 import { SiteContext, LeadForm, Social } from "./ui.jsx";
 import { getSeo } from "../seo.js";
 import { reduceMotion, scanPage, store } from "../lib/effects.js";
@@ -13,9 +14,9 @@ export const NAV = [
   { t: "Home", h: "/" },
   { t: "About SDGS", h: "/about", c: [["Our Founder", "/about#founder"], ["Vision & Mission", "/about#vision"], ["History of SDGS", "/about#history"], ["Management", "/about#management"], ["Principal", "/about#principal"], ["Our Story", "/about/our-story"]] },
   { t: "Departments", h: "/departments", mega: true, c: deptLinks.concat([["All Departments", "/departments"]]) },
-  { t: "Academics", h: "/academics", c: [["Programmes", "/academics#programmes"], ["Admissions", "/academics#admissions"], ["Examinations", "/academics#examinations"], ["Academic Calendar", "/academics#calendar"]] },
-  { t: "Students Corner", h: "/students", c: [["NCC", "/students/ncc"], ["NSS", "/students/nss"], ["Sports", "/students/sports"], ["Culturals", "/students/culturals"]] },
-  { t: "Infrastructure", h: "/infrastructure", c: [["Library", "/infrastructure#library"], ["Sports", "/infrastructure#sports"], ["Auditorium", "/infrastructure#auditorium"], ["Rain Water Harvesting", "/infrastructure#rainwater"], ["Solar System", "/infrastructure#solar"], ["Water Purifiers", "/infrastructure#water"], ["Campus Buildings", "/infrastructure#buildings"], ["Labs", "/infrastructure#labs"]] },
+  { t: "Academics", h: "/academics", c: [["Programmes Offered", "/academics#programmes"], ["Admissions", "/academics#admissions"], ["Examinations", "/academics#examinations"], ["Academic Calendar", "/academics#calendar"], ["Syllabus", "/academics#syllabus"]] },
+  { t: "Students Corner", h: "/students", c: [["NCC", "/students/ncc"], ["NSS", "/students/nss"], ["Sports", "/students/sports"], ["Culturals", "/students/culturals"], ["Achievements", "/students/achievements"], ["Placements & Career", "/students/placements"], ["Scholarships", "/students/scholarships"]] },
+  { t: "Infrastructure", h: "/infrastructure", c: [["Library", "/infrastructure#library"], ["Labs", "/infrastructure#labs"], ["E-Classrooms", "/infrastructure#eclassrooms"], ["Video Conference Hall", "/infrastructure#videoconf"], ["Seminar Hall", "/infrastructure#seminar"], ["Auditorium", "/infrastructure#auditorium"], ["Sports", "/infrastructure#sports"], ["Other Facilities", "/infrastructure#other"]] },
   { t: "Alumni", h: "/alumni" },
   { t: "Gallery", h: "/gallery" },
   { t: "NAAC", h: "/naac", c: [["IQAC", "/naac#iqac"], ["SSR Report", "/naac#ssr"], ["7 Criteria", "/naac#criteria"]] },
@@ -150,10 +151,6 @@ function Footer() {
             <p>Hindupur, Andhra Pradesh · A legacy of excellence since 1965. Recognised by UGC, affiliated to Sri Krishnadevaraya University, accredited by NAAC with B+ and approved by AICTE.</p>
             <p className="deva" style={{ color: "var(--gold-2)", fontSize: "1.1rem" }} lang="sa">तेजस्वि नावधीतमस्तु</p>
           </div>
-          <div className="f-col"><h4>Explore</h4><ul>
-            <li><Link to="/about">About SDGS</Link></li><li><Link to="/departments">Departments</Link></li>
-            <li><Link to="/academics">Academics</Link></li><li><Link to="/students">Students Corner</Link></li>
-            <li><Link to="/infrastructure">Infrastructure</Link></li></ul></div>
           <div className="f-col"><h4>Quick links</h4><ul>
             <li><Link to="/academics#admissions">Admissions</Link></li><li><Link to="/academics#examinations">Examinations</Link></li>
             <li><Link to="/naac">NAAC & IQAC</Link></li><li><Link to="/alumni">Alumni</Link></li><li><Link to="/gallery">Gallery</Link></li></ul></div>
@@ -166,6 +163,14 @@ function Footer() {
             <Social className="f-social" />
           </div>
         </div>
+        <nav className="f-sitemap" aria-label="Site map">
+          {NAV.filter((n) => n.c).map((n) => (
+            <div className="f-col" key={n.h}>
+              <h4><Link to={n.h}>{n.t}</Link></h4>
+              <ul>{n.c.map(([t, h]) => <li key={h + t}><Link to={h}>{t}</Link></li>)}</ul>
+            </div>
+          ))}
+        </nav>
       </div>
       <div className="f-bottom frame">
         <span>© {new Date().getFullYear()} Saradamba Dasa Govindiah Setty College, Hindupur. All rights reserved.</span>
@@ -257,6 +262,8 @@ export default function Layout() {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const [enq, setEnq] = useState(null);
+  const [assistant, setAssistant] = useState(false);
+  const closeAssistant = useCallback(() => setAssistant(false), []);
   const [y, setY] = useState(0);
   const [nudge, setNudge] = useState(false);
   const [client, setClient] = useState(false);
@@ -379,8 +386,11 @@ export default function Layout() {
       <Footer />
 
       <motion.div className="progress" style={{ scaleX: progress }} />
-      <div className="dock">
+      <div className={"dock" + (assistant ? " as-open" : "")}>
         <button className={"dock-cta" + (y > 500 ? " show" : "")} onClick={() => openEnquiry()}><span>Admissions enquiry</span><i><Icon name="arrowUR" /></i></button>
+        <button className="dock-btn dock-ai" onClick={() => { setNudge(false); setAssistant(true); }} aria-label="Open AI College Assistant" aria-expanded={assistant}>
+          <Icon name="sparkles" /><span className="dock-ai-tip">Ask AI</span>
+        </button>
         <a className="dock-btn dock-call" href={"tel:" + C.tel} aria-label="Call the college"><Icon name="phone" /></a>
         <a className="dock-btn dock-wa" href={`https://wa.me/${C.whatsapp}?text=${encodeURIComponent("Hello SDGS College, I would like to know about admissions.")}`} target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><Icon name="whatsapp" /></a>
       </div>
@@ -400,6 +410,7 @@ export default function Layout() {
         <button className="x" aria-label="Dismiss" onClick={() => setNudge(false)}><Icon name="x" /></button>
       </div>
 
+      {client && <Assistant open={assistant} onClose={closeAssistant} />}
       <EnquiryModal state={enq} onClose={() => setEnq(null)} />
       <AnimatePresence>{loading && <Preloader onDone={() => setLoading(false)} />}</AnimatePresence>
     </SiteContext.Provider>

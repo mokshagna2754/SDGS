@@ -25,7 +25,7 @@ export const FAQ_HOME = [
   },
   {
     q: "Which courses are offered at S.D.G.S College, Hindupur?",
-    a: "Intermediate groups MPC, BiPC, MBiPC, CEC, MEC and HEC, and undergraduate programmes B.Sc. (Honours) in Botany, Zoology, Mathematics and Computer Science, B.Com (General and Computer Applications), B.A. (Honours) in Economics and Political Science, B.C.A. (Honours) and B.B.A. (General)."
+    a: "Intermediate groups MPC, BiPC, MBiPC, CEC, MEC and HEC, and undergraduate programmes B.Sc. (Honours) in Botany, Zoology, Mathematics and Computer Science, B.Com (General and Computer Applications), B.A. (Honours) in Economics and Political Science, B.C.A. (Honours) and B.B.A. (Honours)."
   },
   {
     q: "How do I apply for admission at S.D.G.S College?",
@@ -47,8 +47,8 @@ export const FAQ_ADMISSIONS = [
     a: "Usually the SSC marks memo, Intermediate marks memo (for UG), Transfer Certificate, Study and Conduct certificates, caste and income certificates where applicable, Aadhaar card and recent passport-size photographs. Bring originals with photocopies."
   },
   {
-    q: "Where can I find the academic calendar and exam schedule?",
-    a: "The academic calendar and examination schedules are published in the Examinations section of the Academics page and on the notification bar of the S.D.G.S College website."
+    q: "Where can I find the academic calendar, syllabus and examination details?",
+    a: "The academic calendar, year-wise syllabus copies and semester examination details are published on the Academics page of the S.D.G.S College website, with updates on the notification bar."
   }
 ];
 
@@ -108,9 +108,27 @@ const ROUTES = {
     crumb: "Culturals",
     parent: { name: "Students Corner", path: "/students" }
   },
+  "/students/achievements": {
+    title: "Student Achievements | S.D.G.S College Hindupur",
+    description: "Achievements of S.D.G.S College Hindupur students: university ranks, sports championships, NCC and NSS honours and cultural prizes.",
+    crumb: "Achievements",
+    parent: { name: "Students Corner", path: "/students" }
+  },
+  "/students/placements": {
+    title: "Placements & Career Guidance | S.D.G.S College Hindupur",
+    description: "Placements and career guidance at S.D.G.S College Hindupur: campus drives, skill and interview training and counselling for higher studies.",
+    crumb: "Placements & Career",
+    parent: { name: "Students Corner", path: "/students" }
+  },
+  "/students/scholarships": {
+    title: "Scholarships & Internships | S.D.G.S College Hindupur",
+    description: "Scholarship and internship support at S.D.G.S College Hindupur, with links to PM Internship, AICTE Internship, IIC and SWAYAM Plus.",
+    crumb: "Scholarships",
+    parent: { name: "Students Corner", path: "/students" }
+  },
   "/infrastructure": {
     title: "Campus & Infrastructure | S.D.G.S College Hindupur",
-    description: "Library, laboratories, auditorium, sports facilities, solar power, rain water harvesting, water purifiers and campus buildings at S.D.G.S College Hindupur.",
+    description: "Library, laboratories, e-classrooms, video conference hall, seminar hall, auditorium, sports, solar power, rain water harvesting, mineral water and the Dr. B. R. Ambedkar Study Centre at S.D.G.S College Hindupur.",
     crumb: "Infrastructure"
   },
   "/alumni": {
@@ -143,8 +161,22 @@ export function deptMeta(d) {
   };
 }
 
+const allProgrammes = () => SDGS.programmes.ug.map((p) => ({ p, ug: true })).concat(SDGS.programmes.intermediate.map((p) => ({ p, ug: false })));
+
+export function progMeta({ p, ug }) {
+  const name = ug ? p.name : "Intermediate " + p.code;
+  return {
+    title: `${name} | ${ug ? p.subs.join(", ") : p.name} | S.D.G.S College Hindupur`,
+    description: `${name} at S.D.G.S College Hindupur: ${ug ? p.subs.join(", ") : p.name}. ${p.note} Eligibility, duration and admission enquiry.`.slice(0, 300),
+    crumb: p.code,
+    parent: { name: "Academics", path: "/academics" }
+  };
+}
+
 export function allRoutes() {
-  return Object.keys(ROUTES).concat(SDGS.departments.map((d) => "/departments/" + d.id));
+  return Object.keys(ROUTES)
+    .concat(SDGS.departments.map((d) => "/departments/" + d.id))
+    .concat(allProgrammes().map(({ p }) => "/academics/" + p.id));
 }
 
 const ORG = {
@@ -189,6 +221,11 @@ export function getSeo(pathname) {
     dept = SDGS.departments.find((d) => "/departments/" + d.id === path);
     if (dept) meta = deptMeta(dept);
   }
+  let prog = null;
+  if (!meta && path.startsWith("/academics/")) {
+    prog = allProgrammes().find(({ p }) => "/academics/" + p.id === path);
+    if (prog) meta = progMeta(prog);
+  }
   if (!meta) {
     return { title: "Page not found | " + BRAND, description: ROUTES["/"].description, canonical: abs("/"), noindex: true, jsonLd: null };
   }
@@ -214,6 +251,9 @@ export function getSeo(pathname) {
       "@type": "ItemList", name: "Programmes at S.D.G.S College Hindupur",
       itemListElement: all.map((c, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "Course", name: c.name, description: c.d, provider: { "@id": abs("/#organization") } } }))
     });
+  }
+  if (prog) {
+    graph.push({ "@type": "Course", name: prog.ug ? prog.p.name : "Intermediate " + prog.p.code, description: prog.p.note, provider: { "@id": abs("/#organization") } });
   }
   if (dept) {
     graph.push({ "@type": "Course", name: dept.programme, description: dept.about, provider: { "@id": abs("/#organization") } });

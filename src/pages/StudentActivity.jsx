@@ -8,7 +8,7 @@ export default function StudentActivity() {
   const { id } = useParams();
   const a = ACTIVITIES.find((x) => x.id === id);
   if (!a) return <NotFound />;
-  const others = ACTIVITIES.filter((x) => x.id !== a.id);
+  const others = ACTIVITIES.filter((x) => x.id !== a.id && !!x.group === !!a.group);
 
   return (
     <>
@@ -40,10 +40,27 @@ export default function StudentActivity() {
           </div>
           <div>
             <div className="media img-reveal"><Img k={a.img} w={1100} alt={a.eyebrow + " at S.D.G.S College Hindupur"} /></div>
-            <div style={{ marginTop: 14 }} data-reveal><Pending>Event photos to be provided</Pending></div>
+            <div style={{ marginTop: 14 }} data-reveal><Pending>{a.group ? "Details to be provided by the college" : "Event photos to be provided"}</Pending></div>
           </div>
         </div>
       </section>
+
+      {a.links && (
+        <section className="section-sm" id="links" aria-labelledby="links-h">
+          <div className="frame">
+            <div className="sec-head">
+              <div><span className="eyebrow" data-reveal>Official links</span><Split id="links-h">Apply and <em>register.</em></Split></div>
+            </div>
+            <div className="docs" data-stagger="0.06">
+              {a.links.map(([b, s, href]) => (
+                <a className="doc" href={href} target="_blank" rel="noopener" key={b}>
+                  <i><Icon name="file" /></i><div><b>{b}</b><span>{s}</span></div><span className="dl"><Icon name="arrowUR" /></span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section-sm ivory">
         <div className="frame">

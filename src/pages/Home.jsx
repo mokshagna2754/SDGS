@@ -14,12 +14,12 @@ const ACCR = [
 const FACILITIES = [
   { cls: "w2 h2", img: "library2", ic: "book", h: "Library", p: "A quiet, well-stocked library with reference collections, journals and reading halls.", to: "/infrastructure#library" },
   { cls: "", img: "chem", ic: "microscope", h: "Laboratories", p: "Science and computer labs for hands-on learning.", to: "/infrastructure#labs" },
-  { cls: "gold", ic: "sun", h: "Solar powered", p: "A greener campus running on clean energy.", to: "/infrastructure#solar" },
-  { cls: "", img: "auditorium", ic: "mic", h: "Auditorium", p: "Seminars, fests and convocations.", to: "/infrastructure#auditorium" },
-  { cls: "plain", ic: "drop", h: "Rain water harvesting", p: "Harvesting rainwater to recharge groundwater.", to: "/infrastructure#rainwater" },
+  { cls: "gold", ic: "cpu", h: "E-classrooms", p: "Smart, projector-equipped classrooms.", to: "/infrastructure#eclassrooms" },
+  { cls: "", img: "auditorium", ic: "mic", h: "Seminar hall", p: "Seminars, guest lectures and workshops.", to: "/infrastructure#seminar" },
+  { cls: "plain", ic: "users", h: "Video conference hall", p: "Live sessions with experts anywhere.", to: "/infrastructure#videoconf" },
   { cls: "w2", img: "sports", ic: "trophy", h: "Sports grounds", p: "Track, field and indoor games that build champions.", to: "/infrastructure#sports" },
-  { cls: "maroon", ic: "glass", h: "Pure drinking water", p: "Water purifiers across the campus.", to: "/infrastructure#water" },
-  { cls: "", img: "campus", ic: "building", h: "Campus buildings", p: "Spacious classrooms and blocks.", to: "/infrastructure#buildings" }
+  { cls: "maroon", ic: "sun", h: "Other facilities", p: "Solar power, rain water harvesting, mineral water and the Dr. B. R. Ambedkar Study Centre.", to: "/infrastructure#other" },
+  { cls: "", img: "crowd", ic: "mic", h: "Auditorium", p: "Fests, celebrations and convocations.", to: "/infrastructure#auditorium" }
 ];
 
 export default function Home() {
@@ -30,15 +30,8 @@ export default function Home() {
       <NoticeBar />
 
       {/* ---------- Affiliation, Accreditation & Approval ---------- */}
-      <section className="section-sm" aria-labelledby="accr-h">
+      <section className="section-sm" aria-label="Affiliation, accreditation and approval">
         <div className="frame">
-          <div className="sec-head">
-            <div>
-              <span className="eyebrow" data-reveal>Affiliation · Accreditation · Approval</span>
-              <Split id="accr-h">Trusted by the <em>institutions</em> that matter.</Split>
-            </div>
-            <p className="lead" data-reveal>S.D.G.S College is recognised by UGC, affiliated to Sri Krishnadevaraya University, accredited by NAAC with B+ and approved by AICTE.</p>
-          </div>
           <div className="accr-grid" data-stagger="0.1">
             {ACCR.map((a) => (
               <article className="accr spot" key={a.k}>
@@ -105,7 +98,7 @@ export default function Home() {
           <div className="path-grid" data-stagger="0.12">
             {[
               { n: "01", img: "realSeminarHall", h: "Academics", p: "Intermediate and UG programmes with experienced faculty, honours tracks and practical learning.", to: "/academics#programmes", chips: ["MPC", "BiPC", "B.Sc", "B.Com", "BCA", "BBA"] },
-              { n: "02", img: "realComputerLab", h: "Examinations", p: "Academic calendar, exam schedules and results, all in one place.", to: "/academics#examinations", chips: ["Calendar", "Schedules", "Results"] },
+              { n: "02", img: "realComputerLab", h: "Examinations", p: "Academic calendar, semester examination details, syllabus and results, all in one place.", to: "/academics#examinations", chips: ["Calendar", "Exam details", "Syllabus", "Results"] },
               { n: "03", img: "realCampus", h: "Admissions", p: "Eligibility, documents and a simple process to secure your seat.", to: "/academics#admissions", chips: ["Eligibility", "Documents", "Apply"] }
             ].map((c) => (
               <Link className="path" to={c.to} key={c.n}>

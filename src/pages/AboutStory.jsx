@@ -34,7 +34,7 @@ const MOMENTS = [
   ["realYoga", "International Yoga Day"],
   ["realCollegeDay", "College Day, Jagruthi 2022"],
   ["realComputerLab", "Computer lab"],
-  ["realMemorial", "Founder's memorial on campus"]
+  ["realTemple", "Temple on campus"]
 ];
 
 export default function AboutStory() {
